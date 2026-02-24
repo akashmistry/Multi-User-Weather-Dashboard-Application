@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const { connectDB } = require('./config/db');
 const authRoutes = require('./routes/auth');
 const protectedRoutes = require('./routes/protected');
+const cityRoutes = require('./routes/cities');
 
 const PORT = process.env.PORT;
 const app = express();
@@ -18,6 +19,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api', protectedRoutes);
+app.use('/api/cities', cityRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ success: false, message: 'Not found' });

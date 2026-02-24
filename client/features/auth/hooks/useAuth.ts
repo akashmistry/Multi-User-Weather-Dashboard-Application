@@ -15,6 +15,7 @@ import {
   selectCurrentUser,
   selectIsAuthHydrated,
 } from '@/features/auth/model/selectors';
+import { citiesApi } from '@/features/cities/api/citiesApi';
 
 export function useAuth() {
   const dispatch = useAppDispatch();
@@ -79,6 +80,7 @@ export function useAuth() {
 
   const logout = useCallback(() => {
     dispatch(logoutAction());
+    dispatch(citiesApi.util.resetApiState());
     router.push('/login');
   }, [dispatch, router]);
 
